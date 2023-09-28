@@ -29,6 +29,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TodosModule } from './todos/todos.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         synchronize: true,
       }),
     }),
+    TodosModule,
   ],
   controllers: [AppController],
   providers: [AppService],
