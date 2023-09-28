@@ -3,6 +3,9 @@ import { Cat } from '../interfaces/cat.interface';
 
 @Injectable()
 export class CatService {
+  // @Inject('HTTP_OPTIONS')
+  // private readonly httpClient;
+
   private readonly cats: Cat[] = [];
 
   create(cat: Cat) {
