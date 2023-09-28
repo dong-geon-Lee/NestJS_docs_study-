@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Get,
   Header,
@@ -9,16 +10,24 @@ import {
   Redirect,
   Req,
 } from '@nestjs/common';
-import { CatService } from './cats.service';
+import { CatService } from '../service/cats.service';
 import { Request } from 'express';
 import { Observable, of } from 'rxjs';
+import { CreateCatDto } from '../dto/create-cat.dto';
+import { Cat } from '../interfaces/cat.interface';
 
 @Controller('api/cats')
 export class CatsController {
   constructor(private readonly catService: CatService) {}
 
+  @Post('/one')
+  async createOne(@Body() createCatDto: CreateCatDto) {
+    this.catService.createOne(createCatDto);
+    return this.catService;
+  }
+
   @Get('/')
-  findAll(): string {
+  async findAll(): Promise<Cat[]> {
     return this.catService.findAll();
   }
 
@@ -27,6 +36,12 @@ export class CatsController {
   @HttpCode(204)
   create(): string {
     return 'This action adds a new cat';
+  }
+
+  @Post('/')
+  async createCat(@Body() createCatDto: CreateCatDto) {
+    console.log(createCatDto);
+    return createCatDto;
   }
 
   @Get('/love')
@@ -59,5 +74,11 @@ export class CatsController {
   @Get()
   findFool2(): Observable<any[]> {
     return of([]);
+  }
+
+  @Post()
+  create11(@Body() createCatDto: CreateCatDto) {
+    console.log(createCatDto);
+    return 'This action adds a new cat';
   }
 }
