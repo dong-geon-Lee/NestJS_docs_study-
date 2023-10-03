@@ -30,6 +30,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TodosModule } from './todos/todos.module';
+import { join } from 'path';
+// import { Todo } from './todos/entities/todo.entity';
 
 @Module({
   imports: [
@@ -45,7 +47,7 @@ import { TodosModule } from './todos/todos.module';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
-        entities: [],
+        entities: [join(process.cwd(), 'dist/**/*.entity.js')],
         synchronize: true,
       }),
     }),
