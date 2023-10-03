@@ -1,37 +1,8 @@
-// import { Module } from '@nestjs/common';
-// import { TypeOrmModule } from '@nestjs/typeorm';
-// import { AppController } from './app.controller';
-// import { AppService } from './app.service';
-// import { ConfigModule } from '@nestjs/config';
-
-// @Module({
-//   imports: [
-//     ConfigModule.forRoot(),
-//     TypeOrmModule.forRoot({
-//       type: 'mysql',
-//       host: '127.0.0.1',
-//       port: 3306,
-//       username: 'root',
-//       password: '',
-//       database: 'test',
-//       entities: [],
-//       synchronize: true,
-//     }),
-//   ],
-//   controllers: [AppController],
-//   providers: [AppService],
-// })
-
-// export class AppModule {}
-
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TodosModule } from './todos/todos.module';
 import { join } from 'path';
-// import { Todo } from './todos/entities/todo.entity';
 
 @Module({
   imports: [
@@ -39,7 +10,6 @@ import { join } from 'path';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-
       useFactory: (configService: ConfigService) => ({
         type: 'mysql',
         host: configService.get('DB_HOST'),
@@ -53,7 +23,5 @@ import { join } from 'path';
     }),
     TodosModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
