@@ -25,8 +25,8 @@ export class TodosService {
 
   async update(id: number, dto: CreateTodoDto) {
     const todo = await this.todoRepository.findOne({ where: { id } });
-    Object.assign(todo, dto);
-    return await this.todoRepository.save(todo);
+    const updatedTodo = { ...todo, ...dto };
+    return await this.todoRepository.save(updatedTodo);
   }
 
   async remove(id: number) {
