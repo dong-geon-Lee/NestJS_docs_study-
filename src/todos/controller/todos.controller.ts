@@ -7,8 +7,8 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { TodosService } from './todos.service';
-import { CreateTodoDto } from './dto/create-todo.dto';
+import { TodosService } from '../service/todos.service';
+import { CreateTodoDto } from '../dto/create-todo.dto';
 
 @Controller('todos')
 export class TodosController {

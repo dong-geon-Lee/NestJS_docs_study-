@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { TodosController } from './todos.controller';
-import { TodosService } from './todos.service';
+import { TodosController } from '../controller/todos.controller';
+import { TodosService } from '../service/todos.service';
 
 describe('TodosController', () => {
   let controller: TodosController;
