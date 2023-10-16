@@ -7,12 +7,12 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { TodosService } from '../service/todos.service';
-import { CreateTodoDto } from '../dto/create-todo.dto';
+import { TodosService } from './todos.service';
+import { CreateTodoDto } from './dto/create-todo.dto';
 
 @Controller('todos')
 export class TodosController {
-  constructor(private readonly todosService: TodosService) {}
+  constructor(private todosService: TodosService) {}
 
   @Post()
   create(@Body() dto: CreateTodoDto) {
@@ -26,7 +26,6 @@ export class TodosController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    console.log(id, +id);
     return this.todosService.findOne(+id);
   }
 
